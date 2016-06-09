@@ -1,0 +1,20 @@
+<div class="post" id='post-id-{{post.key().id()}}'>
+  <div class="post-heading">
+    <div class="post-title">
+      <a href="/blog/{{post.key().id()}}">{{post.subject}}</a>
+    </div>
+
+    <div class="post-created-info text-left">
+      <div>
+        <span>Posted by <span class="post-owner">{{post.owner.name}}</span></span>
+        <span>,&nbsp;<span class="post-date">{{post.get_created_time_str()}}</span></span>
+        <span class="post-id" style="display:none;">{{post.key().id()}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-content text-left">
+    <div>{{post._render_text | safe}}</div>
+  </div>
+
+</div>

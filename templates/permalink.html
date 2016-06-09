@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{post.render() | safe}}
+
+  <div class="post-footer">
+    <!-- <span class="action"><a href="/blog/{{post.key().id()}}/like">Like</a></span>
+    <span class="action"><a href="/blog/{{post.key().id()}}/comment">Comment</a></span> -->
+
+    <span class="action like-button">Like</span>
+    <span class="action comment-button">Comment</span>
+    <span class="action edit-button">Edit</span>
+    <span class="action delete-button">Delete</span>
+    <span class="post-id-holder" style="display: none;" >{{post.key().id()}}</span>
+    <label class="post-footer-error" style="display: none;" ></label>
+  </div>
+
+  <div id="likes-container" class="">
+      Liked by&nbsp;{% for like in likes%}
+        <span class="like-owner">{{like.owner.name}} , &nbsp;</span>
+      {% endfor %}
+  
+  </div>
+
+  <div id="comments-container" class="">
+      {% for comment in comments%}
+        <div class="comment-container">
+          <section class="comment-created-info">
+            <p><span class="comment-owner">{{comment.owner.name}}</span> <span class="comment-time text-right"> created on {{comment.get_created_time_str()}}</span></p>
+          </section>
+          <section class="comment-content">
+            <div >"{{comment.content}}"</div> 
+            
+          </section>
+          <section class="comment-action">
+            <div class="">Edit</div>
+            <div class="">Reply</div>
+          </section>
+        </div>
+        
+      {% endfor %}
+  
+  </div>
+  <div id="add-comment-container" class="" >
+    <div id="add-comment-form">
+        <textarea name="add_comment_content" id="add-comment-textarea" class="col-sm-12" wrap='hard' rows="2" cols="50">
+          {{add_comment_content}}
+        </textarea>
+        <button id="add-comment-submit" >Add Comment</button>
+    </div>
+    <div class='add-comment-error' style="display:none;">errors in comment!</div>
+  </div>
+  <div class="age">
+     {{age}}, {{comments_age}}, {{likes_age}}
+  </div>
+
+  <!--modal to confirm delete post-->
+
+  <!-- The Modal -->
+  <div id="confirm-delete-modal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">x</span>
+      <p>Delete the post ?</p>
+      <span class="yes">yes</span>
+      <span class="no">no</span>
+    </div>
+
+  </div>
+
+
+{% endblock %}
