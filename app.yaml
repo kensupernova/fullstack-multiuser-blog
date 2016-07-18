@@ -1,5 +1,5 @@
 application: amazing-blog-site
-version: 2
+version: 4
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -9,13 +9,15 @@ handlers:
   static_dir: static
 
 - url: /favicon.ico
-  static_files: static/images/favicon.ico
-  upload: static/images/favicon.ico
+  static_files: static/img/favicon.ico
+  upload: static/img/favicon.ico
 
 - url: /.*
   script: blog.app
 
 libraries:
+- name: webapp2
+  version: "2.5.2"
 - name: jinja2
   version: latest
 - name: PIL

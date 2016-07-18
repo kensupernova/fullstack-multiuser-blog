@@ -1,6 +1,6 @@
-#------------
+#coding: utf-8
+##-------------------- helpers
 import os
-
 
 import random
 import hashlib

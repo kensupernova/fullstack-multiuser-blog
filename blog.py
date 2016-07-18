@@ -436,7 +436,7 @@ class EditHandler(BlogHandler):
         # print "edit request user: %s" % self.user
         # print "edit post owner: %s" % post.owner
         if post.owner.name == self.user.name:
-            self.render("newpost.html", user=self.user, subject=post.subject, content = post.content)
+            self.render("editpost.html", user=self.user, subject=post.subject, content = post.content)
         else:
             redirect_url = "/blog/%s" % post_id
             self.render("unauthorized.html", post_id=post_id, user=self.user, redirect=redirect_url);
@@ -463,7 +463,7 @@ class EditHandler(BlogHandler):
             # memcache.flush_all()
         else:
             error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error)
+            self.render("editpost.html", subject=subject, content=content, error=error)
 
 #___________ delete handler
 class DeleteHandler(BlogHandler):
